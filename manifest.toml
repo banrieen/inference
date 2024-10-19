@@ -1,0 +1,36 @@
+# 模型基础配置
+
+[model.info]
+model_name = "ssa_classify_onnx/model_zc_v01.onnx"
+model_version = "0.1"
+test_input = "ssa_classify_onnx/tests/E609C2EC-659A-4caf-B583-9CF34A4BDC9F.png"
+model_output = '_infer_results'
+model_quota = {}
+gpu_type = "cpu"
+# 模型文件格式: [.ckpt .pb .pth .pkl .h5(keras) .onnx]（onnx推荐）
+model_formats = 'onnx'
+# 支持的数据集格式
+dataset_labels = ['area', 'circle', 'scratch_dirty', 'smp']
+# 支持的图像格式 .png .jpg .bmp .tif .heif (不支持gif, svg)
+image_format = ['png', 'jpg', 'bmp', 'tif', 'heif']
+# 模型文件：.ckpt/.pb/.pth/.pkl/.onnx
+model_format_extension = ".onnx"
+
+[model.infer]
+target_length = 256
+value=0.0
+method=0
+# 训练脚本：train.py
+train_script = "train.py"
+# 评估脚本：eval.py
+eva_script = "eval.py"
+# 推理脚本：inference.py
+infer_script = "inference.py"
+# 训练评估环境镜像：推荐编译后的docker image，不建议只提供docker file；
+training_image = ""
+# 推理环境镜像： 推荐编译后的docker image，不建议只提供docker file；
+inference_image = ""
+# 镜像调用方式：推荐同时提供bash, python,C/C++，Go 等调用方式或SDK
+
+# 参数
+param = []

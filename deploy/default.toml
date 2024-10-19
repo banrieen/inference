@@ -1,0 +1,60 @@
+# Data source config
+# Env: Python 3.11.4
+
+[default.info]
+dir = "conf/LED_qianzhao_csv"
+
+# Default common config
+[default.analysis_info]
+Index = "VF1"
+Spec = [0,1.9]
+BINCode = "BIN"
+asix = ["PosX","PosY"]
+database = "datasets_qianzhao"
+dut_info_table = "datasets_qianzhao.dut_info"
+dut_list_table = "datasets_qianzhao.dut_list"
+dut_info_rows = 14
+dut_list_rows = 52
+
+# Default DB config
+[default.dataset_db]
+host = "192.168.56.103"
+port = "3306"
+user = "root"
+password = "thomas2023"
+database = "datasets_qianzhao"
+raise_on_warnings = true
+
+# Default storage config
+[default.minIO]
+endpoint = "192.168.13.89:9000"
+access_key = "BEUHvMfx9zXUpnD35wiO1xuyJwPvlULuVqljgIHz"
+account = "admin"
+secret_key = "admin123"
+secure = false
+
+# Default INFO DB schema table
+[default.dut_info]
+FileID = "FileID"
+FileName = "FileName"                                              
+TestTime = "TestTime"                                               
+TesterModel = "TesterModel"                                                  
+CommPort = "FBCommPort"                                                 
+TesterNumber = "TesterNumber"                                            
+Specification = "Specification"                                                      
+SampleBins = "SampleBins"                                               
+SampleStandard = "SampleStandard"                                                  
+SampleLevel = "SampleLevel"                                              
+TotalTested = "TotalTested"                                              
+Samples = "Samples"                                            
+Operator = "Operator"                                                
+MaximumBin = "MaximumBin"
+
+# Default DUT list DB schema table
+[default.dut_list]
+TEST = "TEST"
+BIN = "BIN"
+VF1 = "VF1"
+IR = "IR"
+PosX = "PosX"
+PosY = "PosY"
