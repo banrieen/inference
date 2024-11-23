@@ -8,3 +8,7 @@ _infer_results/
 .vs
 generator/
 tests/
+
+# Added by cargo
+
+/target
