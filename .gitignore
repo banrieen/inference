@@ -6,9 +6,13 @@ _infer_results/
 .github
 .vscode
 .vs
-generator/
-tests/
 
 # Added by cargo
 
 /target
+
+# python files
+.ipynb_checkpoints
+
+# model files
+*.pt
