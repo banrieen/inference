@@ -6,7 +6,13 @@ _infer_results/
 .github
 .vscode
 .vs
+<<<<<<< HEAD
 
+=======
+generator/
+tests/
+__pycache__
+>>>>>>> 5adf8b1 (change license)
 # Added by cargo
 
 /target
