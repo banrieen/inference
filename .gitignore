@@ -8,7 +8,7 @@ _infer_results/
 .vs
 generator/
 tests/
-
+__pycache__
 # Added by cargo
 
 /target
