@@ -1633,7 +1633,7 @@ dependencies = [
     { name = "pylint" },
     { name = "pytest" },
     { name = "ray", extra = ["data", "default", "serve", "train", "tune"] },
-    { name = "sanic" },
+    { name = "sanic", extra = ["ext"] },
     { name = "scrapy" },
     { name = "sqlmodel" },
 ]
@@ -1655,7 +1655,7 @@ requires-dist = [
     { name = "pylint", specifier = ">=3.3.1" },
     { name = "pytest", specifier = ">=8.3.3" },
     { name = "ray", extras = ["data", "default", "serve", "train", "tune"], specifier = ">=2.38.0" },
-    { name = "sanic", specifier = ">=24.6.0" },
+    { name = "sanic", extras = ["ext"], specifier = ">=24.6.0" },
     { name = "scrapy", specifier = ">=2.11.2" },
     { name = "sqlmodel", specifier = ">=0.0.22" },
 ]
@@ -3948,6 +3948,23 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/37/00/d252369495fe3bc876fb7c269ec204800b6f66fdd9083d4dd29ee7539130/sanic-24.6.0.tar.gz", hash = "sha256:2e0841e2c8c28e68a0e6fc570c42aafbbe3b385d7141b9f96997d9d6c17d7afb", size = 351992 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/76/88/4c61ced275fa8978775e4380c423250161470ef5b418e94685128f161102/sanic-24.6.0-py3-none-any.whl", hash = "sha256:e2c6b392e213d85d9843cf27c64e3f2dacb3ec5c31c8c7ade4c404cd3030e994", size = 244941 },
+]
+
+[package.optional-dependencies]
+ext = [
+    { name = "sanic-ext" },
+]
+
+[[package]]
+name = "sanic-ext"
+version = "23.12.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pyyaml" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/7d/bf/807ded5b25f5576173c4603a1f16f67150b63eb899b0996231d88b10b90f/sanic-ext-23.12.0.tar.gz", hash = "sha256:42fc41e7fafa58f3b790f685f3dd8a8de281460b4169d0e91f4e11b8747f845c", size = 64959 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c2/42/140f19f464e6fe6597e7274341751b72466acc360bbd70013cca1f3249b1/sanic_ext-23.12.0-py3-none-any.whl", hash = "sha256:3ba2c143d7c41d89b87a11c6214b9d9b52c3994ff8ce3a03792b54ec5627e2c3", size = 95228 },
 ]
 
 [[package]]
