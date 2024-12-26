@@ -12,7 +12,11 @@ _infer_results/
 generator/
 tests/
 __pycache__
+<<<<<<< HEAD
 >>>>>>> 5adf8b1 (change license)
+=======
+>>>>>>> 5adf8b187be7166706be78c0f7669ed7d336893b
+>>>>>>> 445dff059f1224d5118c84839e0fce49b24778bf
 # Added by cargo
 
 /target
@@ -22,3 +26,4 @@ __pycache__
 
 # model files
 *.pt
+.cache/

@@ -10,6 +10,7 @@ RAG（文本<语音>，图像<视频 >）-LLM-Tools，（向量数据库，通�
 
 基于 AutoGen 开发
 
+Compare AutoGen and crewAI，The method and logic about AGI workflow
 
 >>> SSA分类模型
 支持对wafer map 进行缺陷分布特征
