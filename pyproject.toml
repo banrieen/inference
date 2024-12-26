@@ -22,4 +22,5 @@ dependencies = [
     "psycopg2-binary>=2.9.10",
     "sqlmodel>=0.0.22",
     "ollama>=0.3.3",
+    "gradio>=5.9.1",
 ]

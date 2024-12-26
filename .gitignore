@@ -16,3 +16,4 @@ _infer_results/
 
 # model files
 *.pt
+.cache/

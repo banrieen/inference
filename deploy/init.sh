@@ -1,10 +1,7 @@
 # Linux bash env init
 # Host system Debian12 
 sudo apt update -y
-pip install -r requirements.ini
 
-https://download.opensuse.org/repositories/openSUSE:/Factory/standard/x86_64/traefik-2.10.1-1.2.x86_64.rpm
-sudo apt install -y traefik-2.10.1-1.2.x86_64.rpm 
 ## Sanic will automatically spin up multiple processes and route traffic between them. We recommend as many workers as you have available processors.
 ## The easiest way to get the maximum CPU performance is to use the --fast option. This will automatically run the maximum number of workers given the system constraints.
 # sanic server:app --host=0.0.0.0 --port=1337 --workers=4
@@ -32,30 +29,7 @@ mlflow ui -h 192.168.56.113 -p 5000
 ## Start ray 
 
 
-## Install airflow
-AIRFLOW_HOME=airflow
-mkdir airflow
-
-### config db
-CREATE DATABASE airflow_db;
-CREATE USER thomas WITH PASSWORD 'thomas';
-GRANT ALL PRIVILEGES ON DATABASE airflow_db TO thomas;
--- PostgreSQL 15 requires additional privileges:
-GRANT ALL ON SCHEMA public TO thomas;
-
-SELECT * FROM information_schema.table_privileges WHERE table_schema = 'public';
-GRANT SELECT ON ALL TABLES IN SCHEMA public TO thomas;
-
-
-REVOKE ALL PRIVILEGES ON DATABASE airflow_db FROM thomas;
-GRANT ALL PRIVILEGES ON DATABASE airflow_db TO thomas;
-
-
-sql_alchemy_conn = postgresql+psycopg2://thomas:thomas@192.168.56.113/airflow_db
-
-
-
-# Install gradio
+# Install gradio, ffor cv test and demo
 uv add gradio
 
 ## Install and start Ray on local
@@ -69,4 +43,13 @@ curl -fsSL https://ollama.com/install.sh | sh
 ## autoagent studio
 uv add autogen-agentchat~=0.2
 uv add autogenstudio
-autogenstudio ui --host 192.168.56.113 --port 8081
+### create database and public user
+CREATE DATABASE autogen;
+CREATE USER thomas WITH PASSWORD 'thomas';
+GRANT ALL PRIVILEGES ON DATABASE autogen TO thomas;
+GRANT CONNECT ON DATABASE autogen TO thomas;
+GRANT USAGE ON SCHEMA public TO thomas;
+GRANT CREATE ON SCHEMA public TO thomas;
+
+### autogenstudio ui --host 10.0.56.113 --port 8081 & 
+autogenstudio ui --appdir ~/workspace/autogenstudio --host 10.0.56.113 --port 8081 --database-uri postgresql+psycopg://thomas:thomas@10.0.56.113/autogen &
