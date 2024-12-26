@@ -6,7 +6,13 @@ _infer_results/
 .github
 .vscode
 .vs
+<<<<<<< HEAD
 
+=======
+generator/
+tests/
+__pycache__
+>>>>>>> 5adf8b187be7166706be78c0f7669ed7d336893b
 # Added by cargo
 
 /target

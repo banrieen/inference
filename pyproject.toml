@@ -14,7 +14,7 @@ dependencies = [
     "pylint>=3.3.1",
     "pytest>=8.3.3",
     "ray[data,default,serve,train,tune]>=2.38.0",
-    "sanic>=24.6.0",
+    "sanic[ext]>=24.6.0",
     "scrapy>=2.11.2",
     "autogen-core>=0.0.2",
     "autogen-agentchat~=0.2",
@@ -22,5 +22,5 @@ dependencies = [
     "psycopg2-binary>=2.9.10",
     "sqlmodel>=0.0.22",
     "ollama>=0.3.3",
-    "gradio>=5.9.1",
+    "genesis-world>=0.2.0",
 ]

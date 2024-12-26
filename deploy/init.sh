@@ -23,7 +23,7 @@ kill -9 `isof -ti:1337`
 
 ## Start mlflow server
 uv add mlflow
-mlflow ui -h 192.168.56.113 -p 5000
+mlflow ui -h 10.0.56.113 -p 5000
 
 
 ## Start ray 
