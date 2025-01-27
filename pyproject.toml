@@ -3,11 +3,8 @@ name = "inference"
 version = "0.1.0"
 description = "推理服务平台"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.11"
 dependencies = [
-    "autogenstudio>=0.1.5",
-    "grpcio>=1.67.0",
-    "grpcio-tools>=1.67.0",
     "jupyterlab>=4.2.5",
     "matplotlib>=3.9.2",
     "polars>=1.12.0",
@@ -16,11 +13,13 @@ dependencies = [
     "ray[data,default,serve,train,tune]>=2.38.0",
     "sanic[ext]>=24.6.0",
     "scrapy>=2.11.2",
-    "autogen-core>=0.0.2",
-    "autogen-agentchat~=0.2",
     "mlflow>=2.17.1",
     "psycopg2-binary>=2.9.10",
     "sqlmodel>=0.0.22",
-    "ollama>=0.3.3",
-    "genesis-world>=0.2.0",
+    # "ollama>=0.3.3",
+    # "genesis-world>=0.2.0",
 ]
+
+[[index]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true

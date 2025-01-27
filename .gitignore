@@ -21,3 +21,4 @@ __pycache__
 # model files
 *.pt
 .cache/
+uv.lock
