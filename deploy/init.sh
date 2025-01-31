@@ -52,4 +52,6 @@ GRANT USAGE ON SCHEMA public TO thomas;
 GRANT CREATE ON SCHEMA public TO thomas;
 
 ### autogenstudio ui --host 10.0.56.113 --port 8081 & 
-autogenstudio ui --appdir ~/workspace/autogenstudio --host 10.0.56.113 --port 8081 --database-uri postgresql+psycopg://thomas:thomas@10.0.56.113/autogen &
+mkdir -p ~/workspace/autogenstudio
+HOST=192.168.124.12
+autogenstudio ui --appdir ~/workspace/autogenstudio --reload  --host $HOST --port 8081 --database-uri postgresql+psycopg://thomas:thomas@$HOST/autogenstudio &
