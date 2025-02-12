@@ -16,7 +16,6 @@ sanic server:app --host=0.0.0.0 --port=1337 --fast
 # Python 环节管理
 uv venv
 source .env/bin/activate
-uv add  -r requirements
 uv add opencv-python
 
 kill -9 `isof -ti:1337`
@@ -24,9 +23,6 @@ kill -9 `isof -ti:1337`
 ## Start mlflow server
 uv add mlflow
 mlflow ui -h 10.0.56.113 -p 5000
-
-
-## Start ray 
 
 
 # Install gradio, ffor cv test and demo
@@ -41,15 +37,21 @@ ray
 curl -fsSL https://ollama.com/install.sh | sh
 
 ## autoagent studio
-uv add autogen-agentchat~=0.2
+uv add autogen-agentchat
 uv add autogenstudio
 ### create database and public user
-CREATE DATABASE autogen;
-CREATE USER thomas WITH PASSWORD 'thomas';
-GRANT ALL PRIVILEGES ON DATABASE autogen TO thomas;
-GRANT CONNECT ON DATABASE autogen TO thomas;
-GRANT USAGE ON SCHEMA public TO thomas;
-GRANT CREATE ON SCHEMA public TO thomas;
+CREATE USER autogen WITH PASSWORD 'autogen';
+CREATE DATABASE autogenstudio OWNER autogen;
 
-### autogenstudio ui --host 10.0.56.113 --port 8081 & 
-autogenstudio ui --appdir ~/workspace/autogenstudio --host 10.0.56.113 --port 8081 --database-uri postgresql+psycopg://thomas:thomas@10.0.56.113/autogen &
+# ALTER USER thomas WITH PASSWORD 'thomas';
+# GRANT ALL PRIVILEGES ON DATABASE inference TO thomas;
+# GRANT CONNECT ON DATABASE inference TO thomas;
+# GRANT USAGE ON SCHEMA public TO thomas;
+# GRANT CREATE ON SCHEMA public TO thomas;
+
+### Start dev service
+HOST=10.0.56.113
+PORT=8081
+DatabaseName=autogenstudio
+DatabaseURL=postgresql+psycopg://autogen:autogen@${HOST}/${DatabaseName}
+autogenstudio ui --appdir ~/workspace/autogenstudio --host ${HOST} --port ${PORT} --database-uri ${DatabaseURL} --upgrade-database True &
