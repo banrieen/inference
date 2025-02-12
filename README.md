@@ -2,19 +2,16 @@
 特点： 支持反馈自学习和自动部署
 版本： v0.1,
 状态： 开发中,
-更新时间： 2024-09-09,
-更新人：Haiyuan,
-客户：个人
+
+* 需求分析-问题定位，
+* 数据分析
 
 RAG（文本<语音>，图像<视频 >）-LLM-Tools，（向量数据库，通用数据库）
 
 基于 AutoGen 开发
 
-Compare AutoGen and crewAI，The method and logic about AGI workflow
-
->>> SSA分类模型
-支持对wafer map 进行缺陷分布特征
-仅支持 onnx 格式模型
+空间特征分布分析模型
+支持 onnx 格式模型
 
 ## 对接方式 一：
 1. 打包为wheel, 然后安装并导入
