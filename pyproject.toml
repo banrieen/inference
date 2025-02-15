@@ -18,12 +18,14 @@ dependencies = [
     "magentic-one-cli>=0.2.2",
     "autogenstudio>=0.4.0.3",
     "autogen-agentchat>=0.4.2",
-    "autogen-ext[openai]>=0.4.2",
+    "autogen-ext[azure,openai]>=0.4.2",
+    "vllm>=0.7.2",
+    "huggingface-hub>=0.28.1",
     # "ollama>=0.3.3",
     # "genesis-world>=0.2.0",
 ]
 
-[[tool.uv.index]]
+[[index]]
 url = "https://pypi.tuna.tsinghua.edu.cn/simple"
 default = true
 

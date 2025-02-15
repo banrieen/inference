@@ -42,8 +42,8 @@ uv add autogenstudio
 ### create database and public user
 CREATE USER autogen WITH PASSWORD 'autogen';
 CREATE DATABASE autogenstudio OWNER autogen;
-
-# ALTER USER thomas WITH PASSWORD 'thomas';
+ALTER USER autogen WITH PASSWORD 'autogen';
+\q
 # GRANT ALL PRIVILEGES ON DATABASE inference TO thomas;
 # GRANT CONNECT ON DATABASE inference TO thomas;
 # GRANT USAGE ON SCHEMA public TO thomas;
@@ -53,5 +53,6 @@ CREATE DATABASE autogenstudio OWNER autogen;
 HOST=10.0.56.113
 PORT=8081
 DatabaseName=autogenstudio
+Workspace="~/workspace/autogenstudio"
 DatabaseURL=postgresql+psycopg://autogen:autogen@${HOST}/${DatabaseName}
-autogenstudio ui --appdir ~/workspace/autogenstudio --host ${HOST} --port ${PORT} --database-uri ${DatabaseURL} --upgrade-database True &
+autogenstudio ui --appdir ${Workspace} --host ${HOST} --port ${PORT} --database-uri ${DatabaseURL}  &
