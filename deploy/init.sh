@@ -40,16 +40,19 @@ curl -fsSL https://ollama.com/install.sh | sh
 uv add autogen-agentchat
 uv add autogenstudio
 ### create database and public user
-CREATE DATABASE autogenstudio ;
-CREATE USER thomas WITH PASSWORD 'thomas';
-GRANT ALL PRIVILEGES ON DATABASE inference TO thomas;
-GRANT CONNECT ON DATABASE inference TO thomas;
-GRANT USAGE ON SCHEMA public TO thomas;
-GRANT CREATE ON SCHEMA public TO thomas;
+CREATE USER autogen WITH PASSWORD 'autogen';
+CREATE DATABASE autogenstudio OWNER autogen;
+ALTER USER autogen WITH PASSWORD 'autogen';
+\q
+# GRANT ALL PRIVILEGES ON DATABASE inference TO thomas;
+# GRANT CONNECT ON DATABASE inference TO thomas;
+# GRANT USAGE ON SCHEMA public TO thomas;
+# GRANT CREATE ON SCHEMA public TO thomas;
 
-### autogenstudio ui --host 10.0.56.113 --port 8081 & 
-mkdir -p ~/workspace/autogenstudio
-Workdir="~/workspace/autogenstudio"
-HOST="192.168.124.12"
-Database="postgresql+psycopg://thomas:thomas@$HOST/autogenstudio"
-autogenstudio ui --appdir ~/workspace/autogenstudio --reload  --host $HOST --port 8081 --database-uri $Database &
+### Start dev service
+HOST=10.0.56.113
+PORT=8081
+DatabaseName=autogenstudio
+Workspace="~/workspace/autogenstudio"
+DatabaseURL=postgresql+psycopg://autogen:autogen@${HOST}/${DatabaseName}
+autogenstudio ui --appdir ${Workspace} --host ${HOST} --port ${PORT} --database-uri ${DatabaseURL}  &
