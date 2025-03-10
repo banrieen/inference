@@ -1,7 +1,7 @@
 # Linux bash env init
 # Host system Debian12 
 sudo apt update -y
-
+sudo apt install redis-server -y
 ## Sanic will automatically spin up multiple processes and route traffic between them. We recommend as many workers as you have available processors.
 ## The easiest way to get the maximum CPU performance is to use the --fast option. This will automatically run the maximum number of workers given the system constraints.
 # sanic server:app --host=0.0.0.0 --port=1337 --workers=4
