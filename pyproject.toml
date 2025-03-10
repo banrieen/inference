@@ -16,13 +16,13 @@ dependencies = [
     "psycopg2-binary>=2.9.10",
     "sqlmodel>=0.0.22",
     "magentic-one-cli>=0.2.2",
-    "autogenstudio>=0.4.0.3",
     "autogen-agentchat>=0.4.2",
-    "autogen-ext[azure,openai]>=0.4.2",
-    "vllm>=0.7.2",
-    "huggingface-hub>=0.28.1",
-    # "ollama>=0.3.3",
+    "autogen-ext[openai]>=0.4.2",
     # "genesis-world>=0.2.0",
+    "magentic-one-cli>=0.2.3",
+    "autogen-agentchat>=0.4.6",
+    "autogen-ext[openai]>=0.4.6",
+    "autogenstudio>=0.4.1.1",
 ]
 
 [[index]]
