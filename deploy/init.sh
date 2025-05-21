@@ -42,17 +42,30 @@ uv add autogenstudio
 ### create database and public user
 CREATE USER autogen WITH PASSWORD 'autogen';
 CREATE DATABASE autogenstudio OWNER autogen;
-ALTER USER autogen WITH PASSWORD 'autogen';
+ALTER USER autogen WITH PASSWORD 'autogen2025';
 \q
-# GRANT ALL PRIVILEGES ON DATABASE inference TO thomas;
-# GRANT CONNECT ON DATABASE inference TO thomas;
-# GRANT USAGE ON SCHEMA public TO thomas;
-# GRANT CREATE ON SCHEMA public TO thomas;
+## assert the connection:　psql -h 10.0.56.113 -U autogen -d autogenstudio
+# GRANT ALL PRIVILEGES ON DATABASE autogenstudio TO autogen;
+# GRANT CONNECT ON DATABASE autogenstudio TO autogen;
+# GRANT USAGE ON SCHEMA public TO autogen;
+# GRANT CREATE ON SCHEMA public TO autogen;
+##  强制断开所有数据库连接[1,7](@ref)
+SELECT pg_terminate_backend(pg_stat_activity.pid)
+FROM pg_stat_activity
+WHERE datname = 'autogenstudio';
+## DROP DATABASE IF EXISTS autogenstudio-test;
 
-### Start dev service
+### Start autogen dev service
+# 使用bash 变量链接可能出现数据库认证错误
+# 如果删除数据库，重新创建之后，需要再次修改数据库登录账号的密码
+
 HOST=10.0.56.113
 PORT=8081
 DatabaseName=autogenstudio
-Workspace="~/workspace/autogenstudio"
-DatabaseURL=postgresql+psycopg://autogen:autogen@${HOST}/${DatabaseName}
-autogenstudio ui --appdir ${Workspace} --host ${HOST} --port ${PORT} --database-uri ${DatabaseURL}  &
+Workspace="/home/thomas/workspace/autogenstudio"
+DatabaseURL=postgresql+psycopg://autogen:autogen2025@10.0.56.113:5432/autogenstudio
+#           postgresql+psycopg://user:password@localhost/dbname
+autogenstudio ui --appdir /home/thomas/workspace/autogenstudio  \
+                 --host 10.0.56.113 \
+                 --port 8081 \
+                 --database-uri postgresql+psycopg://autogen:autogen2025@10.0.56.113:5432/autogenstudio  &
