@@ -17,6 +17,7 @@ __pycache__
 /pyinfer/tmp
 # python files
 .ipynb_checkpoints
+~/ 
 
 # model files
 *.pt
