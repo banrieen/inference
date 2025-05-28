@@ -1,0 +1,22 @@
+[Unit]
+Description=MLflow Tracking Server
+After=network.target
+
+[Service]
+User=thomas
+Group=thomas
+WorkingDirectory=/home/thomas/workspace/inference/
+ExecStart=/home/thomas/workspace/inference/.venv/bin/mlflow server \
+    --host 0.0.0.0 \
+    --port 8083 \
+    --backend-store-uri sqlite:////home/thomas/workspace/mlruns/mlflow.db \
+    --default-artifact-root /home/thomas/workspace/mlruns
+Restart=on-failure
+RestartSec=5s
+Environment="PATH=/home/thomas/workspace/inference/.venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+Environment="VIRTUAL_ENV=/home/thomas/workspace/inference/.venv"
+[Install]
+WantedBy=multi-user.target
+
+# Create the mlflow service file on debian12 
+# sudo nano /etc/systemd/system/mlflow.service

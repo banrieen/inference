@@ -22,8 +22,8 @@ kill -9 `isof -ti:1337`
 
 ## Start mlflow server
 uv add mlflow
-mlflow ui -h 10.0.56.113 -p 5000
-
+/home/thomas/workspace/inference/.venv/bin/mlflow ui -h 0.0.0.0 -p 8083  --default-artifact-root /home/thomas/workspace/mlruns &
+# sudo kill -9 $(sudo lsof -t -i :8083)
 
 # Install gradio, ffor cv test and demo
 uv add gradio
@@ -69,3 +69,14 @@ autogenstudio ui --appdir /home/thomas/workspace/autogenstudio  \
                  --host 10.0.56.113 \
                  --port 8081 \
                  --database-uri postgresql+psycopg://autogen:autogen2025@10.0.56.113:5432/autogenstudio  &
+
+
+## K3S 最小化部署
+存储 minIO
+数据库 postgresql
+缓存（可选）
+向量数据库
+知识库
+应用和组件服务
+模型服务
+

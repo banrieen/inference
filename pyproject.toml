@@ -20,6 +20,7 @@ dependencies = [
     "autogen-core>=0.4.9.3",
     "autogenstudio>=0.4.2.1",
     "psycopg2-binary>=2.9.10",
+    "mcp[cli]>=1.9.0",
 ]
 
 [[index]]
