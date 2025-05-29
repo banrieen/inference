@@ -1,7 +1,7 @@
 # Linux bash env init
 # Host system Debian12 
 sudo apt update -y
-
+sudo apt install redis-server -y
 ## Sanic will automatically spin up multiple processes and route traffic between them. We recommend as many workers as you have available processors.
 ## The easiest way to get the maximum CPU performance is to use the --fast option. This will automatically run the maximum number of workers given the system constraints.
 # sanic server:app --host=0.0.0.0 --port=1337 --workers=4
@@ -22,8 +22,8 @@ kill -9 `isof -ti:1337`
 
 ## Start mlflow server
 uv add mlflow
-mlflow ui -h 10.0.56.113 -p 5000
-
+/home/thomas/workspace/inference/.venv/bin/mlflow ui -h 0.0.0.0 -p 8083  --default-artifact-root /home/thomas/workspace/mlruns &
+# sudo kill -9 $(sudo lsof -t -i :8083)
 
 # Install gradio, ffor cv test and demo
 # uv add gradio
@@ -47,30 +47,41 @@ podman exec -it agentDB psql -U admbanrieenin -d appdb  # 进入容器内命令�
 
 CREATE USER autogen WITH PASSWORD 'autogen';
 CREATE DATABASE autogenstudio OWNER autogen;
-ALTER USER autogen WITH PASSWORD 'autogen';
+ALTER USER autogen WITH PASSWORD 'autogen2025';
 \q
-# GRANT ALL PRIVILEGES ON DATABASE inference TO thomas;
-# GRANT CONNECT ON DATABASE inference TO thomas;
-# GRANT USAGE ON SCHEMA public TO thomas;
-# GRANT CREATE ON SCHEMA public TO thomas;
+## assert the connection:　psql -h 10.0.56.113 -U autogen -d autogenstudio
+# GRANT ALL PRIVILEGES ON DATABASE autogenstudio TO autogen;
+# GRANT CONNECT ON DATABASE autogenstudio TO autogen;
+# GRANT USAGE ON SCHEMA public TO autogen;
+# GRANT CREATE ON SCHEMA public TO autogen;
+##  强制断开所有数据库连接[1,7](@ref)
+SELECT pg_terminate_backend(pg_stat_activity.pid)
+FROM pg_stat_activity
+WHERE datname = 'autogenstudio';
+## DROP DATABASE IF EXISTS autogenstudio-test;
 
-### Start dev service
-#### HOST=10.0.56.113
-HOST=192.168.124.12
+### Start autogen dev service
+# 使用bash 变量链接可能出现数据库认证错误
+# 如果删除数据库，重新创建之后，需要再次修改数据库登录账号的密码
+
+HOST=10.0.56.113
 PORT=8081
 DatabaseName=autogenstudio
-Workspace="~/workspace/autogenstudio"
-DatabaseURL=postgresql+psycopg://autogen:autogen@6543/${DatabaseName}
-autogenstudio ui --appdir ${Workspace} --host ${HOST} --port ${PORT} --database-uri ${DatabaseURL}  &
+Workspace="/home/thomas/workspace/autogenstudio"
+DatabaseURL=postgresql+psycopg://autogen:autogen2025@10.0.56.113:5432/autogenstudio
+#           postgresql+psycopg://user:password@localhost/dbname
+autogenstudio ui --appdir /home/thomas/workspace/autogenstudio  \
+                 --host 10.0.56.113 \
+                 --port 8081 \
+                 --database-uri postgresql+psycopg://autogen:autogen2025@10.0.56.113:5432/autogenstudio  &
 
-# Knowledge graph database
 
-sudo podman run -d -it -p 8080:8080 -p 9080:9080 -v ~/dgraph:/dgraph docker.xuanyuan.me/dgraph/standalone:latest
+## K3S 最小化部署
+存储 minIO
+数据库 postgresql
+缓存（可选）
+向量数据库
+知识库
+应用和组件服务
+模型服务
 
-## GUI client
-podman run -p 8010:8010 docker.xuanyuan.me/dgraph/ratel:latest
-
-## Multi LLM chat DB
-CREATE DATABASE llmChat OWNER autogen;
-ALTER USER autogen WITH PASSWORD 'autogen';
-\q

@@ -1,0 +1,39 @@
+{
+  "models": [
+    {
+      "title": "gemma3:4b",
+      "provider": "ollama",
+      "temperature": 0.4,
+      "model": "gemma3:4b"
+    },
+
+    {
+      "title": "devstral:latest",
+      "provider": "ollama",
+      "temperature": 0.2,    // 降低温度以获得更确定性结果
+      "model": "devstral:latest"
+    },
+
+    {
+      "title": "llama3.1:latest",
+      "provider": "ollama",
+      "model": "llama3.1:latest"
+    }
+
+  ],
+  "customCommands": [
+  ],
+  "tabAutocompleteModel": {
+    "title": "devstral",
+    "provider": "ollama",
+    "model": "devstral:latest"
+  },
+  "embeddingsProvider": {
+    "provider": "transformers.js"
+  },
+  "serverConfig": {
+    "keepAlive": "30m",
+    "maxLoadedModels": 4,
+    "numThreads": 8
+  }
+}

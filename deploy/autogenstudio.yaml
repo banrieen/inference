@@ -1,0 +1,33 @@
+# Local-only configuration
+version: 1.1
+
+models:
+  default: "local-llama"
+  configurations:
+    - name: "local-llama"
+      type: "ollama"
+      base_url: "http://localhost:11434"
+      model: "llama3:70b"
+      temperature: 0.3
+      top_p: 0.9
+      seed: 42
+
+    - name: "local-mistral"
+      type: "ollama"
+      model: "mistral:7b-instruct"
+
+agents:
+  - name: "coding_assistant"
+    type: "AssistantAgent"
+    config:
+      system_message: "You are an expert Python developer."
+      llm_config:
+        model: "local-llama"
+        max_tokens: 4096
+
+  - name: "quality_check"
+    type: "AssistantAgent"
+    config:
+      system_message: "You are a software quality assurance specialist."
+      llm_config:
+        model: "local-mistral"
