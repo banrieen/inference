@@ -26,20 +26,25 @@ mlflow ui -h 10.0.56.113 -p 5000
 
 
 # Install gradio, ffor cv test and demo
-uv add gradio
+# uv add gradio
 
 ## Install and start Ray on local
 
-uv add ray[default]
-ray 
+# uv add ray[default]
+# ray 
 
 ## 安装或更新 ollama 
-curl -fsSL https://ollama.com/install.sh | sh
+# curl -fsSL https://ollama.com/install.sh | sh
 
 ## autoagent studio
 uv add autogen-agentchat
 uv add autogenstudio
+
 ### create database and public user
+podman run -d --name=agentDB   -e POSTGRES_USER=banrieen   -e POSTGRES_PASSWORD=banrieen@2025   -e POSTGRES_DB=appdb   -v C:\\workspace\\postgres-data:/var/lib/postgresql/data   -p 6543:5432   --restart=unless-stopped   docker.1ms.run/library/postgres:latest  
+podman exec -it agentDB psql -U admbanrieenin -d appdb  # 进入容器内命令行
+# 推荐使用 Alpine 精简版
+
 CREATE USER autogen WITH PASSWORD 'autogen';
 CREATE DATABASE autogenstudio OWNER autogen;
 ALTER USER autogen WITH PASSWORD 'autogen';
@@ -50,9 +55,22 @@ ALTER USER autogen WITH PASSWORD 'autogen';
 # GRANT CREATE ON SCHEMA public TO thomas;
 
 ### Start dev service
-HOST=10.0.56.113
+#### HOST=10.0.56.113
+HOST=192.168.124.12
 PORT=8081
 DatabaseName=autogenstudio
 Workspace="~/workspace/autogenstudio"
-DatabaseURL=postgresql+psycopg://autogen:autogen@${HOST}/${DatabaseName}
+DatabaseURL=postgresql+psycopg://autogen:autogen@6543/${DatabaseName}
 autogenstudio ui --appdir ${Workspace} --host ${HOST} --port ${PORT} --database-uri ${DatabaseURL}  &
+
+# Knowledge graph database
+
+sudo podman run -d -it -p 8080:8080 -p 9080:9080 -v ~/dgraph:/dgraph docker.xuanyuan.me/dgraph/standalone:latest
+
+## GUI client
+podman run -p 8010:8010 docker.xuanyuan.me/dgraph/ratel:latest
+
+## Multi LLM chat DB
+CREATE DATABASE llmChat OWNER autogen;
+ALTER USER autogen WITH PASSWORD 'autogen';
+\q

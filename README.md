@@ -13,6 +13,19 @@ RAG（文本<语音>，图像<视频 >）-LLM-Tools，（向量数据库，通�
 空间特征分布分析模型
 支持 onnx 格式模型
 
+个人智能助手
+构建基础的基础MLops对接 AI（视觉，大模型），通过 workflow 构建 Agent team ，支持MCP ,A2A 协议；
+维护提示词模板，输出模型推理数据，收集用户反馈导入模型个体化优化
+
+
+1. 用户交互    // autogen studio， 自定义客户端
+2. Agent flow // Server autogen core ，sanic api call cloud LLM
+3. 本地或云端MLops      // mlflow , 推理继续尝试 vllm, onnx
+4. 数据存储    // postgres + minIO， 向量数据库，知识库
+5. 数据处理-后分析 // wave，数据标注 label-studio
+6. Open API   // sanic
+7. 安装运维    // uv 
+
 ## 对接方式 一：
 1. 打包为wheel, 然后安装并导入
 
