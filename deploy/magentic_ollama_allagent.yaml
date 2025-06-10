@@ -1,0 +1,83 @@
+# Model Configurations for Different Agents
+# set OLLAMA_NUM_PARALLEL=5 & set OLLAMA_MAX_LOADED_MODELS=5 & ollama serve
+global_config:
+  timeout:
+    user_input: 300  # 用户输入超时从默认60秒延长至300秒
+    agent_response: 600  # 代理响应超时延长至10分钟
+    ollama_call: 120  # 模型调用超时
+
+model_config_orchestrator: &orchestrator_client
+  provider: autogen_ext.models.ollama.OllamaChatCompletionClient
+  config:
+    model: "deepseek-r1:latest"
+    host: "http://localhost:11434"
+    model_info:
+      vision: false
+      function_calling: true
+      json_output: true
+      family: deepseek
+      structured_output: true
+  max_retries: 5
+
+model_config_coder: &coder_client
+  provider: autogen_ext.models.ollama.OllamaChatCompletionClient
+  config:
+    model: "devstral:latest"
+    host: "http://localhost:11434"
+    model_info:
+      vision: false
+      function_calling: true
+      json_output: true
+      family: mistral
+      structured_output: true
+  max_retries: 5
+
+model_config_web_surfer: &web_surfer_client
+  provider: autogen_ext.models.ollama.OllamaChatCompletionClient
+  config:
+    model: "gemma3:latest"
+    host: "http://localhost:11434"
+    search_engine: {
+      default: "https://www.bing.com/search?q={query}",
+      fallback: "https://yandex.com/search/?text={query}"
+                }
+    model_info:
+      vision: false
+      function_calling: true
+      json_output: true
+      family: gemma3
+      structured_output: true
+  max_retries: 5
+
+model_config_file_surfer: &file_surfer_client
+  provider: autogen_ext.models.ollama.OllamaChatCompletionClient
+  config:
+    model: "llama3.2-vision:latest"
+    host: "http://localhost:11434"
+    model_info:
+      vision: true
+      function_calling: true
+      json_output: true
+      family: llama3
+      structured_output: true
+  max_retries: 5
+
+model_config_action_guard: &action_guard_client
+  provider: autogen_ext.models.ollama.OllamaChatCompletionClient
+  config:
+    model: "devstral:latest"
+    host: "http://localhost:11434"
+    model_info:
+      vision: false
+      function_calling: true
+      json_output: true
+      family: mistral
+      structured_output: true
+  max_retries: 5
+
+# Agent Assignments
+orchestrator_client: *orchestrator_client
+coder_client: *coder_client
+web_surfer_client: *web_surfer_client
+file_surfer_client: *file_surfer_client
+action_guard_client: *action_guard_client

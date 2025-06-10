@@ -2,16 +2,12 @@ from openai import OpenAI
 
 client = OpenAI(
     base_url='https://api-inference.modelscope.cn/v1/',
-    api_key='77add609-2353-4e86-8887-e5d7c9a63a03', # ModelScope Token
+    api_key='25bd76e1-8a58-4c45-ba65-4bf097a5cc67', # ModelScope Token
 )
 
 response = client.chat.completions.create(
-    model='deepseek-ai/DeepSeek-R1', # ModelScope Model-Id
+    model='deepseek-ai/DeepSeek-R1-0528', # ModelScope Model-Id
     messages=[
-        {
-            'role': 'system',
-            'content': 'You are a helpful assistant.'
-        },
         {
             'role': 'user',
             'content': '你好'

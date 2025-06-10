@@ -14,7 +14,7 @@ dependencies = [
     "mlflow>=2.17.1",
     "sqlmodel>=0.0.22",
     "magentic-one-cli>=0.2.4",
-    "autogen-ext[openai,web-surfer]>=0.4.9.3",
+    "autogen-ext[ollama,openai,web-surfer]>=0.4.9.3",
     "playwright>=1.52.0",
     "autogen-agentchat>=0.4.9.3",
     "autogen-core>=0.4.9.3",
@@ -24,7 +24,7 @@ dependencies = [
 ]
 
 [[tool.uv.index]]
-url = "https://mirrors.cloud.tencent.com/pypi/simple/"
+url = "https://mirrors.aliyun.com/pypi/simple/"
 default = true
 
 [tool.uv.pip]
