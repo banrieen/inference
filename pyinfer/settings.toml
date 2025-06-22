@@ -1,0 +1,39 @@
+# LLM multi agent config
+[LLM_Deepseek]
+LLM_API_URL = ""
+API_KEY = "DEEPSEEK_KEY"
+TEMPERATURE = ""
+
+
+[LLM_Hunyuank]
+LLM_API_URL = ""
+API_KEY = 'TENCENT_KEY'
+TEMPERATURE = ""
+
+[LLM_qwen]
+LLM_API_URL = ""
+API_KEY = 'OPENAI_KEY'
+TEMPERATURE = ""
+
+[LLM_doubao]
+LLM_API_URL = ""
+API_KEY = 'DOUBAO_KEY'
+TEMPERATURE = ""
+
+[ANALYSIS_WEIGHTS]
+'clarity'= 0.25
+'accuracy'= 0.35
+'completeness'= 0.20
+'conciseness'= 0.20
+
+# config.toml
+[database]
+host = "localhost"
+port = 5432
+user = "autogen"
+password = "autogen"
+database = "llmChat"
+
+[llm.default]
+temperature = 0.7
+providers = ["deepseek", "hunyuan", "qwen", "doubao"]

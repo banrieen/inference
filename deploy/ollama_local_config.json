@@ -1,0 +1,12 @@
+{
+    "host": "0.0.0.0",
+    "port": 11434,
+    "environment": {
+      "OLLAMA_NUM_PARALLEL": "4",
+      "OLLAMA_MAX_LOADED_MODELS": "3"
+    },
+    "format": {
+      "response": "json",
+      "default_system": "Always output valid JSON. Use schema: {result: {key: value}}"
+    }
+  }

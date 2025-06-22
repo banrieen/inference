@@ -8,12 +8,16 @@ dependencies = [
     "matplotlib>=3.9.2",
     "polars>=1.12.0",
     "pylint>=3.3.1",
+<<<<<<< HEAD
     # "ray[data,default,serve,train,tune]>=2.38.0",
+=======
+    "pytest>=8.3.3",
+>>>>>>> f4ccc0ca9c6934ea5bd1fac485bbe6e22bd91bc0
     "sanic[ext]>=24.6.0",
     "scrapy>=2.11.2",
     "mlflow>=2.17.1",
-    "psycopg2-binary>=2.9.10",
     "sqlmodel>=0.0.22",
+<<<<<<< HEAD
     "magentic-one-cli>=0.2.2",
     # "genesis-world>=0.2.0",
     "magentic-one-cli>=0.2.3",
@@ -29,4 +33,18 @@ dependencies = [
 
 [[tool.uv.index]]
 url = "http://mirrors.aliyun.com/pypi/simple"
+=======
+    "magentic-one-cli>=0.2.4",
+    "autogen-ext[ollama,openai,web-surfer]>=0.4.9.3",
+    "playwright>=1.52.0",
+    "autogen-agentchat>=0.4.9.3",
+    "autogen-core>=0.4.9.3",
+    "autogenstudio>=0.4.2.1",
+    "psycopg2-binary>=2.9.10",
+    "mcp[cli]>=1.9.0",
+]
+
+[[tool.uv.index]]
+url = "https://mirrors.aliyun.com/pypi/simple/"
+>>>>>>> f4ccc0ca9c6934ea5bd1fac485bbe6e22bd91bc0
 default = true

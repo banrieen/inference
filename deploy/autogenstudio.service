@@ -1,0 +1,20 @@
+[Unit]
+Description=AutoGen Studio Service
+Documentation=https://microsoft.github.io/autogen/
+After=network.target
+
+[Service]
+User=thomas
+Group=thomas
+WorkingDirectory=/home/thomas/workspace/inference
+ExecStart=/home/thomas/workspace/inference/.venv/bin/autogenstudio ui --appdir /home/thomas/workspace/autogenstudio  --host 10.0.56.113   --port 8081 --database-uri postgresql+psycopg://autogen:autogen2025@10.0.56.113:5432/autogenstudio
+Environment="PATH=/home/thomas/workspace/inference/.venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+Environment="VIRTUAL_ENV=/home/thomas/workspace/inference/.venv"
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
+# Debian 12 systenctl config path
+# sudo nano /etc/systemd/system/autogenstudio.service
+

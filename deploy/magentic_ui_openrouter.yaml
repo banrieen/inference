@@ -1,0 +1,29 @@
+# magentic ui --port 8081
+# openrouter_KEY: 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
+# openrouter_model: "deepseek/deepseek-r1-0528-qwen3-8b:free"
+global_config:
+  timeout:
+    user_input: 300  # 用户输入超时从默认60秒延长至300秒
+    agent_response: 600  # 代理响应超时延长至10分钟
+    ollama_call: 120  # 模型调用超时
+
+model_config: &client
+  provider: OpenAIChatCompletionClient
+  config:
+    model: "deepseek/deepseek-r1-0528:free"
+    base_url: "https://openrouter.ai/api/v1"
+    api_key: "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"
+    model_info: # change per model
+       vision: true 
+       function_calling: true # required true for file_surfer, but will still work if file_surfer is not needed
+       json_output: flase
+       family: deepseek
+       structured_output: false
+  max_retries: 5
+
+
+orchestrator_client: *client
+coder_client: *client
+web_surfer_client: *client
+file_surfer_client: *client
+action_guard_client: *client
