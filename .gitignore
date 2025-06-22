@@ -9,8 +9,9 @@ _infer_results/
 generator/
 tests/
 .venv
+# Autogen
 __pycache__
-
+~/
 # Added by cargo
 
 /target
@@ -22,3 +23,9 @@ __pycache__
 *.pt
 .cache/
 uv.lock
+
+# Mlflow
+mlruns
+
+# rust & cargo
+cargo.lock
